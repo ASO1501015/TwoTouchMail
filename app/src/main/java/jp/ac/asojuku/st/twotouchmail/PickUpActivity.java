@@ -23,13 +23,33 @@ public class PickUpActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
+
+
+
                 RadioGroup rgPlace = (RadioGroup) findViewById(R.id.rg_place);
                 int checkdId = rgPlace.getCheckedRadioButtonId();
                 String strPlace = ((RadioButton) findViewById(checkdId)).getText().toString();
                 EditText edit01 = (EditText) findViewById(R.id.editText);
                 String title = edit01.getText().toString();
                 Resources res = getResources();
+                //int型変数iを宣言
+                int i;
+                //randomメソッドで0以上10未満の整数を生成
+                i = (int)(Math.random()*2);
                 Uri uri = Uri.parse("mailto:" + res.getString(R.string.mail_to).toString());
+
+                switch (i){
+                    case 0:
+                        uri = Uri.parse("mailto:" + res.getString(R.string.mail_to).toString());
+                        break;
+                    case 1:
+                        uri = Uri.parse("mailto:" + res.getString(R.string.mail_to1).toString());
+                        break;
+                    case 2:
+                        uri = Uri.parse("mailto:" + res.getString(R.string.mail_to2).toString());
+                        break;
+                }
 
                 Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
                 intent.putExtra(Intent.EXTRA_SUBJECT, title);
